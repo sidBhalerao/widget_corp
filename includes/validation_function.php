@@ -21,7 +21,7 @@
 			$value = trim($_POST[$field]);
 			//echo $value;	
 			if(empty($value)){
-				$errors[$field] = fieldname_as_text($field) . " Can,t be blank";  //ucfirst will uppercase the first letter.
+				$errors[$field] = fieldname_as_text($field) . " Can't be blank";  //ucfirst will uppercase the first letter.
 			}
 		}
 	}	

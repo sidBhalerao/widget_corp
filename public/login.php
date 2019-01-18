@@ -13,6 +13,7 @@
 
 	if(empty($errors)){
 		//Attempt login
+		$password = null;
 		$username = $_POST["username"];
 		$password = $_POST["password"];
 		//redirect_to("admin.php"); 
