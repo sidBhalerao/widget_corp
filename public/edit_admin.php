@@ -1,7 +1,7 @@
 <?php  require_once("../includes/session.php") ?>
 <?php  require_once("../includes/db_connection.php") ?>
 <?php  require_once("../includes/functions.php") ?>
-<?php  //confirm_logged_in(); ?>
+<?php  confirm_logged_in(); ?>
 <?php  require_once("../includes/validation_function.php") ?>
 
 <?php  
@@ -27,8 +27,8 @@
 		//Perform Update
 		$id = $admin["id"];
 		$username = mysql_prep($_POST["username"]);
-		$hashed_password = password_encrypt($_POST["password"]);
-
+		// $hashed_password = password_encrypt($_POST["password"]);
+		$hashed_password = mysql_prep($_POST["password"]);
 		$query = "UPDATE admins SET ";
 		$query .="username = '{$username}', ";
 		$query .="hashed_password = '{$hashed_password}' ";

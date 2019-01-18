@@ -10,7 +10,8 @@
 
 <div id="main">
 	<div id="navigation">
-		&nbsp;
+		<br />
+		<a href="admin.php">&laquo; Main Menu</a>
 	</div>
 	<div id="page">
 		<?php echo message(); ?>
@@ -30,6 +31,21 @@
 		</table>
 		<br />
 		+<a href="new_admin.php">Add New Admin</a>
+		<!-- <hr />
+		<?php
+		$password = "secret";
+		$hash_format = "$2y$10$";
+		$salt = "Salt22CharatersOrMoreee";
+		echo "length :" . strlen($salt);
+		$format_and_salt = $hash_format . $salt;
+		
+		$hash = crypt($password, $format_and_salt);
+		echo "<br />";
+		echo $hash;
+		$hash1 = crypt($password, $hash);
+		echo "<br />";
+		echo $hash1;
+		?> -->
 	</div>
 </div>
 

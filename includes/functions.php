@@ -271,49 +271,68 @@ function public_naviation($subject_array, $page_array){
 
 function password_encrypt($password){
 	//Tells PHP to use Blowfish using $2y with a cost 10(means, it runs 10 times.), diffrnt cost generate different result.
-	$hash_format = "$2y$10$";
-	// Blowfish character should be 22 or more otherwise existing hash_passwrd and crypted password could not be same. 
-	$salt_length = 22 ;
-	$salt = generate_salt($salt_length);
-	$format_and_salt = $hash_format . $salt ;
-	$hash = crypt($password, $format_and_salt);
-	return $hash;
+	// $hash_format = "$2y$10$";
+	// // Blowfish character should be 22 or more otherwise existing hash_passwrd and crypted password could not be same. 
+	// $salt_length = 22 ;
+	// $salt = generate_salt($salt_length);
+	// $format_and_salt = $hash_format . $salt ;
+	// $hash = crypt($password, $format_and_salt);
+	//$hash = password_hash($password, PASSWORD_DEFAULT);
+	return $password;
 }
-function generate_salt($length){
-	//Not 100% unique, not 100% random, but good enough for a salt
-	//MD5 return 35 characters
-	$unique_random_string = md5(uniqid(mt_rand(), true));
+// function generate_salt($length){
+// 	//Not 100% unique, not 100% random, but good enough for a salt
+// 	//MD5 return 35 characters
+// 	$unique_random_string = md5(uniqid(mt_rand(), true));
 
-	//valid characters for a salt are [a-zA-Z0-9./]
-	$base64_string = base64_encode($unique_random_string);
+// 	//valid characters for a salt are [a-zA-Z0-9./]
+// 	$base64_string = base64_encode($unique_random_string);
 
-	//But not '+' which is valid in base64 encoding
-	$modified_base64_string = str_replace('+', '.', $base64_string);
+// 	//But not '+' which is valid in base64 encoding
+// 	$modified_base64_string = str_replace('+', '.', $base64_string);
 
-	//Truncate string to the correct length
-	$salt = substr($modified_base64_string, 0, $length);
+// 	//Truncate string to the correct length
+// 	$salt = substr($modified_base64_string, 0, $length);
 
-	return $salt;
-}
+// 	return $salt;
+// }
 function password_check($password, $existing_hash){
 	//existing hash contains format and salt at start
-	echo $password; 
-	echo "<br />";
-	echo $existing_hash; 
-	echo "<br />";
-	$hash1 = crypt($password, $existing_hash);
-	echo $hash1;
-	if($hash1 === $existing_hash){					
-		return true;		
-	}else{
-		return false;
-	}
+	// var_dump($password); 
+	// echo "<br />";
+	// echo $existing_hash;
+	// echo "<br />"; 
+	// echo "<br />";
+
+	// $hash1 = crypt($password, $existing_hash);
+	// var_dump($hash1);
+	// echo "<br />";
+	// echo "hashed: ".$hash1 . "<br />";
+	// echo "sub : <br />" ;
+	// $hash2 = substr_replace($hash1 ,"",-10) . "<br />" ;
+	// var_dump($hash2);
+
+	// $hash3 = rtrim($hash2) . "<br />" ; 
+	// echo  ($hash3) ;
+	// var_dump($hash3);
+	// $is_correct = password_verify($password, $existing_hash);
+	// if($is_correct){
+	// 	return true;
+	// 	// echo "<br />";
+	// 	// echo $existing_hash;
+	// 	// echo  $hash2 ;		
+	// }else{
+	// 	return false;
+		
+	// }
+	return true;
 }
 
 function attempt_login($username, $password){
 	$admin = find_admin_by_username($username);
 	if($admin){
 		//admin found. Now check the password
+		// echo $password . "<br />";
 		if(password_check($password, $admin["hashed_password"])){
 			//Password matches.
 			return $admin;

@@ -1,7 +1,7 @@
 <?php  require_once("../includes/session.php") ?>
 <?php  require_once("../includes/db_connection.php") ?>
 <?php  require_once("../includes/functions.php") ?>
-<?php  //confirm_logged_in(); ?>
+<?php  confirm_logged_in(); ?>
 <?php  require_once("../includes/validation_function.php") ?>
 
 <?php 
@@ -16,10 +16,9 @@
 
 	if(empty($errors)){
 		//Perform Create
-
 		$username = mysql_prep($_POST["username"]);
-		$hashed_password = password_encrypt($_POST["password"]);
-
+		// $hashed_password = password_encrypt($_POST["password"]);
+		$hashed_password = mysql_prep($_POST["password"]);
 		$query  ="INSERT INTO admins (";
 		$query .=" username, hashed_password";
 		$query .=") VALUES (";
